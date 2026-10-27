@@ -83,6 +83,13 @@
     <p id="no-expenses-msg" style="display:none;">No expenses yet. Add one above!</p>
   </section>
 
-  <script src="app.js"></script>
+  <!--
+    POST-MERGE NOTE for Member 2:
+    Load api.js BEFORE your script.js so that loadExpenses(), submitExpense(),
+    deleteExpense(), and refreshTotal() are available when your script.js runs.
+  -->
+  <script src="api.js"></script>
+  <!-- Member 2's UI script goes here after merge: -->
+  <!-- <script src="script.js"></script> -->
 </body>
 </html>
