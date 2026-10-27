@@ -100,3 +100,5 @@ The API enforces the following rules on POST requests:
 ## License
 
 ISC
+
+Project Status: Backend Completed
