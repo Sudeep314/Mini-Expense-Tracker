@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Decorative blurred shapes behind the glass cards -->
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+  <div class="blob blob-3" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <h1>Mini Expense Tracker</h1>
+    <p class="subtitle">Track where your money goes, one expense at a time.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Total spending card (changes with the selected period) -->
+    <section class="card total-card" aria-labelledby="total-heading">
+      <h2 id="total-heading">Total Spending <span id="period-label">· All Time</span></h2>
+      <p class="total-amount" id="total-amount">₹0.00</p>
+    </section>
+
+    <!-- Weekly / Monthly / Yearly quick summaries -->
+    <section class="summary-grid" aria-label="Spending summaries">
+      <article class="card summary-card">
+        <h3>This Week</h3>
+        <p class="summary-amount" id="week-total">₹0.00</p>
+      </article>
+      <article class="card summary-card">
+        <h3>This Month</h3>
+        <p class="summary-amount" id="month-total">₹0.00</p>
+      </article>
+      <article class="card summary-card">
+        <h3>This Year</h3>
+        <p class="summary-amount" id="year-total">₹0.00</p>
+      </article>
+    </section>
+
+    <!-- Add expense form -->
+    <section class="card" aria-labelledby="form-heading">
+      <h2 id="form-heading">Add New Expense</h2>
+
+      <form id="expense-form" novalidate>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="e.g. Lunch at canteen" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="amount">Amount (₹)</label>
+            <input type="number" id="amount" name="amount" placeholder="0.00" min="0" step="0.01" required />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="" disabled selected>Select category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+        </div>
+
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+      </form>
+    </section>
+
+    <!-- Expense list with period filter -->
+    <section class="card" aria-labelledby="list-heading">
+      <div class="list-header">
+        <h2 id="list-heading">Your Expenses</h2>
+
+        <div class="filter-tabs" role="group" aria-label="Filter expenses by period">
+          <button type="button" class="tab active" data-period="all" aria-pressed="true">All</button>
+          <button type="button" class="tab" data-period="week" aria-pressed="false">Weekly</button>
+          <button type="button" class="tab" data-period="month" aria-pressed="false">Monthly</button>
+          <button type="button" class="tab" data-period="year" aria-pressed="false">Yearly</button>
+        </div>
+      </div>
+
+      <!-- Empty state (shown when there is nothing to display) -->
+      <div class="empty-state" id="empty-state">
+        <p class="empty-icon" aria-hidden="true">🧾</p>
+        <p class="empty-title">No expenses yet</p>
+        <p class="empty-text" id="empty-text">Add your first expense using the form above.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="expense-table" id="expense-table" hidden>
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Date</th>
+              <th scope="col" class="num">Amount</th>
+              <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody id="expense-list"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Skill Lab Project &middot; Frontend UI</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

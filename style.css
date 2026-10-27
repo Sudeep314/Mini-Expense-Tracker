@@ -1,0 +1,420 @@
+/* ---------- Variables ---------- */
+:root {
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.72);
+  --glass-bg: rgba(255, 255, 255, 0.14);
+  --glass-bg-strong: rgba(255, 255, 255, 0.22);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --accent: #a5b4fc;
+  --danger: #fda4af;
+  --radius: 20px;
+  --shadow: 0 8px 32px rgba(31, 38, 135, 0.3);
+}
+
+/* ---------- Reset & base ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.5;
+  background: linear-gradient(135deg, #312e81, #6d28d9 45%, #db2777);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------- Background blobs (make the glass effect visible) ---------- */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blob-1 {
+  width: 340px;
+  height: 340px;
+  background: #22d3ee;
+  top: -80px;
+  left: -80px;
+}
+
+.blob-2 {
+  width: 300px;
+  height: 300px;
+  background: #f59e0b;
+  bottom: 10%;
+  right: -90px;
+}
+
+.blob-3 {
+  width: 260px;
+  height: 260px;
+  background: #34d399;
+  bottom: -90px;
+  left: 20%;
+}
+
+/* ---------- Header & footer ---------- */
+.site-header,
+.container,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+.site-header h1 {
+  font-size: 2.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: var(--text-soft);
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  padding: 1.5rem 1rem;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* ---------- Glass card ---------- */
+.card {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  background: var(--glass-bg-strong);
+  box-shadow: 0 12px 38px rgba(31, 38, 135, 0.4);
+}
+
+.card h2 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Total card ---------- */
+.total-card {
+  text-align: center;
+}
+
+.total-card h2 {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.25rem;
+}
+
+.total-amount {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Summary cards (week / month / year) ---------- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.summary-card {
+  text-align: center;
+  padding: 1.1rem 0.75rem;
+}
+
+.summary-card h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.summary-amount {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+/* ---------- Form ---------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+input,
+select {
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.12);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Dropdown list and date picker need readable colours */
+select option {
+  color: #1f2937;
+  background: #fff;
+}
+
+input[type="date"] {
+  color-scheme: dark;
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.85), rgba(236, 72, 153, 0.85));
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 1), rgba(219, 39, 119, 1));
+}
+
+.btn-delete {
+  background: rgba(244, 63, 94, 0.25);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.btn-delete:hover {
+  background: rgba(244, 63, 94, 0.8);
+}
+
+/* ---------- Filter tabs ---------- */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.list-header h2 {
+  margin-bottom: 0;
+}
+
+.filter-tabs {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  color: var(--text-soft);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tab.active {
+  color: #312e81;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* ---------- Table ---------- */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.expense-table th,
+.expense-table td {
+  text-align: left;
+  padding: 0.8rem 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+
+.expense-table th {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.expense-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.expense-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.num {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.date-cell {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.category-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border);
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--text-soft);
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+}
+
+.empty-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ---------- Helpers ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .site-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .total-amount {
+    font-size: 2.1rem;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
