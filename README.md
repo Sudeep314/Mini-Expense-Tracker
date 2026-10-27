@@ -2,7 +2,7 @@
 
 A collaborative Skill Lab project to build a lightweight expense tracking web application.
 
-Project Status: Initial Version
+Project Status: Backend Completed
 
 ## Team
 
@@ -100,5 +100,3 @@ The API enforces the following rules on POST requests:
 ## License
 
 ISC
-
-Project Status: Backend Completed
